@@ -19,4 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/categori', [App\Http\Controllers\CategoriController::class, 'index']);
+Route::get('/petugas', [App\Http\Controllers\PetugasController::class, 'index']);
+Route::get('/sale', [App\Http\Controllers\SaleController::class, 'index']);
+Route::get('/transaction', [App\Http\Controllers\TransactionController::class, 'index']);

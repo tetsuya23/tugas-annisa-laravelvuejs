@@ -12,7 +12,7 @@ class CategoriController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.categori.index');
     }
 
     /**
