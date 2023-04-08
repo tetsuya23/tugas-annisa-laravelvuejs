@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Categori extends Model
 {
     use HasFactory;
+
+    public function sales() 
+    {
+        return $this->hasOne('App\Models\Sale', 'categori_id');
+    }
 }
