@@ -235,6 +235,14 @@
                             </a>
                         </li>
                         <li class="nav-item menu-open">
+                            <a href="{{ url ('member') }}" class="nav-link {{ request()->is('member') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-tree"></i>
+                                <p>
+                                    Member
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item menu-open">
                             <a href="{{ url ('petugas') }}" class="nav-link {{ request()->is('petugas') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
