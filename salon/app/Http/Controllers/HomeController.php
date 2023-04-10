@@ -62,7 +62,7 @@ class HomeController extends Controller
         //return $data;
         //return $data2;
         //return $data3;
-        return $data4;
+        //return $data4;
         return view('home');
     }
 }
