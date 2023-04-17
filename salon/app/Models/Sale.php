@@ -11,8 +11,8 @@ class Sale extends Model
 
     public function categori() 
     {
-        return $this->belongsTo('App\Models\Petugas', 'petugas_id');
-        //return $this->belongsTo('App\Models\Categori', 'categori_id');
+        //return $this->belongsTo('App\Models\Petugas', 'petugas_id');
+        return $this->belongsTo('App\Models\Categori', 'categori_id');
       
     }
 }

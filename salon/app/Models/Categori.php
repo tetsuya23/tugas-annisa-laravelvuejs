@@ -9,6 +9,8 @@ class Categori extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function sales() 
     {
         return $this->hasOne('App\Models\Sale', 'categori_id');

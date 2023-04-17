@@ -227,7 +227,7 @@
                             </a>
                         </li>
                         <li class="nav-item menu-open">
-                            <a href="{{ url ('categori') }}" class="nav-link {{ request()->is('categori') ? 'active' : '' }}">
+                            <a href="{{ url ('categoris') }}" class="nav-link {{ request()->is('categoris') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Categori

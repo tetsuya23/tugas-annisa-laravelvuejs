@@ -23,7 +23,7 @@ class CategoriController extends Controller
      */
     public function create()
     {
-        //
+       return view('admin.categori.create');
     }
 
     /**
@@ -31,7 +31,17 @@ class CategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,['name' =>['required']]);
+        // cara menambahkan ke database
+        // cara 1
+        // $categori = new Categori;
+        // $categori->name = $request->name;
+        // $categori->save();
+
+        // cara 2
+        Categori::create($request->all());
+        
+        return redirect('categoris');
     }
 
     /**
@@ -47,7 +57,9 @@ class CategoriController extends Controller
      */
     public function edit(Categori $categori)
     {
-        //
+        // untuk lihat datanya 
+        // return $categori;
+        return view('admin.categori.edit', compact('categori'));
     }
 
     /**
@@ -55,7 +67,11 @@ class CategoriController extends Controller
      */
     public function update(Request $request, Categori $categori)
     {
-        //
+        $this->validate($request,['name' =>['required']]);
+        
+        $categori->update($request->all());
+        
+        return redirect('categoris');
     }
 
     /**
@@ -63,6 +79,8 @@ class CategoriController extends Controller
      */
     public function destroy(Categori $categori)
     {
-        //
+        $categori->delete();
+
+        return redirect('categoris');
     }
 }

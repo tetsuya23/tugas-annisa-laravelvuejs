@@ -39,9 +39,9 @@ class HomeController extends Controller
         //  $petugas = Petugas::with('sales')->get();
         // $categori = Categori::with('sales')->get();
 //no1
-          $data = Member::select('*')
-                              ->join('users', 'users.member_id', '=', 'members.id')     
-                              ->get();
+        //   $data = Member::select('*')
+        //                       ->join('users', 'users.member_id', '=', 'members.id')     
+        //                       ->get();
        
 //no2
         //  $data2 = Member::select('*')
