@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categori;
+use App\Models\Medicine;
 use Illuminate\Http\Request;
 
-class CategoriController extends Controller
+class MedicineController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categoris = Categori::all();
-
-        //return $categoris;
-        return view('admin.categori.index', compact('categoris'));
+        //
     }
 
     /**
@@ -37,7 +34,7 @@ class CategoriController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categori $categori)
+    public function show(Medicine $medicine)
     {
         //
     }
@@ -45,7 +42,7 @@ class CategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categori $categori)
+    public function edit(Medicine $medicine)
     {
         //
     }
@@ -53,7 +50,7 @@ class CategoriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categori $categori)
+    public function update(Request $request, Medicine $medicine)
     {
         //
     }
@@ -61,7 +58,7 @@ class CategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categori $categori)
+    public function destroy(Medicine $medicine)
     {
         //
     }
