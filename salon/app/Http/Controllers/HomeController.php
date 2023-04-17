@@ -30,43 +30,45 @@ class HomeController extends Controller
     public function index()
     {
         //  $members = Member::whereHas('user', function ($query) {
-        //      $query->where('user_type', 'Admin');
-        //  })->get();
+        //        $query->where('user_type', 'Admin');
+        //          })->get();
         // $members = Member::with('user')->get();
-        //$sales = Sale::with('petugas')->get();
-        //$sales = Sale::with('categori')->get();        
-        //$petugas = Petugas::with('sales')->get();
-        //$categori = Categori::with('sales')->get();
+        // $members = Member::all();
+        //  $sales = Sale::all();
+        // $sales = Sale::with('categori')->get();        
+        //  $petugas = Petugas::with('sales')->get();
+        // $categori = Categori::with('sales')->get();
 //no1
-        // $data = Member::select('*')
-        //                     ->join('users', 'users.member_id', '=', 'members.id')     
-        //                     ->get();
+          $data = Member::select('*')
+                              ->join('users', 'users.member_id', '=', 'members.id')     
+                              ->get();
        
 //no2
-        // $data2 = Member::select('*')
-        //                     ->leftJoin('users', 'users.member_id', '=', 'members.id')
-        //                     ->where('users.id', NULL)
-        //                     ->get();
+        //  $data2 = Member::select('*')
+        //                      ->leftJoin('users', 'users.member_id', '=', 'members.id')
+        //                      ->where('users.id', NULL)
+        //                      ->get();
 //no3
-        // $data3 = Transaction::select('members.id', 'members.name')
-        //                     ->rightJoin('members', 'members.id', '=', 'transactions.member_id')
-        //                     ->where('transactions.member_id', NULL)
-        //                     ->get();
+        //  $data3 = Transaction::select('members.id', 'members.name')
+        //                      ->rightJoin('members', 'members.id', '=', 'transactions.member_id')
+        //                      ->where('transactions.member_id', NULL)
+        //                      ->get();
 //no4
-        // $data4 = Member::select('members.id', 'members.name', 'members.phone_number')
-        //                     ->join('transactions', 'transactions.member_id', '=', 'members.id')
-        //                     ->orderBy('members.id', 'asc')
-        //                     ->get();
+        //  $data4 = Member::select('members.id', 'members.name', 'members.phone_number')
+        //                      ->join('transactions', 'transactions.member_id', '=', 'members.id')
+        //                      ->orderBy('members.id', 'asc')
+        //                      ->get();
 
-        //return $members;
-        //return $sales;
-        //return $petugas;
-        //return $categori;
-        //return $transaction_details;
-        //return $data;
-        //return $data2;
-        //return $data3;
-        //return $data4;
+
+        // return $members;
+        // return $sales;
+        // return $petugas;
+        // return $categori;
+        // return $transaction_details;
+        // return $data;
+        // return $data2;
+        // return $data3;
+        // return $data4;
         return view('home');
     }
 }
