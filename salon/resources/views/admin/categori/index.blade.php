@@ -28,6 +28,7 @@
                         <td class="text-center">{{ date('m.d.y', strtotime($categori->created_at ))}}</td>
                         <td class="text-center">
                             <a href="{{ url('categoris/'.$categori->id.'/edit') }}" class="btn btn-info btn-sm">Edit</a>
+                            <!-- <a href="categori/delete/{{ $categori->id }}" class="btn btn-info btn-sm">Delete</a>     -->
 
                             <form action="{{ url('categoris', ['id' => $categori->id]) }}" method="post">
                                 <input class="btn btn-secondary btn-sm" type="submit" value="Delete" onclick="return confirm('Are you sure?')">

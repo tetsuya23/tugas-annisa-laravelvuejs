@@ -78,7 +78,11 @@ class CategoriController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Categori $categori)
+    // public function delete($id)
     {
+        // $categori=Categori::find($id);
+        // $categori->delete();
+        // return redirect('/categori');
         $categori->delete();
 
         return redirect('categoris');

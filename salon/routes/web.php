@@ -27,6 +27,7 @@ Route::post('/categoris', [App\Http\Controllers\CategoriController::class, 'stor
 Route::get('/categoris/{categori}/edit', [App\Http\Controllers\CategoriController::class, 'edit']);
 Route::put('/categoris/{categori}', [App\Http\Controllers\CategoriController::class, 'update']);
 Route::delete('/categoris/{categori}', [App\Http\Controllers\CategoriController::class, 'destroy']);
+// Route::delete('/categoris/delete/{id}',[App\Http\Controllers\CategoriController::class, 'delete']);
 
 Route::get('/member', [App\Http\Controllers\MemberController::class, 'index']);
 Route::get('/petugas', [App\Http\Controllers\PetugasController::class, 'index']);
