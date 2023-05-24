@@ -22,7 +22,7 @@ class PetugasController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.petugas.create');
     }
 
     /**
@@ -30,7 +30,11 @@ class PetugasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,['name', 'gender', 'email', 'phone_number', 'address' =>['required']]);
+        Petugas::create($request->all());
+        
+        return redirect('petugas');
+        
     }
 
     /**
@@ -46,7 +50,8 @@ class PetugasController extends Controller
      */
     public function edit(Petugas $petugas)
     {
-        //
+        //  return $petugas;
+        return view('admin.petugas.edit', compact('petugas'));
     }
 
     /**
@@ -54,7 +59,11 @@ class PetugasController extends Controller
      */
     public function update(Request $request, Petugas $petugas)
     {
-        //
+        $this->validate($request,['name', 'gender', 'email', 'phone_number', 'address' =>['required']]);
+        
+        $petugas->update($request->all());
+        
+        return redirect('petugas');
     }
 
     /**
@@ -62,6 +71,8 @@ class PetugasController extends Controller
      */
     public function destroy(Petugas $petugas)
     {
-        //
+        $petugas->delete();
+
+        return redirect('petugas');
     }
 }

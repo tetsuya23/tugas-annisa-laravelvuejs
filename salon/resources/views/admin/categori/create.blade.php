@@ -3,10 +3,11 @@
 @section('content')
 <div class="row">
     <!-- left column -->
-    <div class="col-md-6">
+    <div class="col-md-10">
         <!-- general form elements -->
         <div class="card card-primary">
             <div class="card-header">
+            <h3 class="card-title">CATEGORI</h3>
                 <h3 class="card-title">Create Categori</h3>
             </div>
         

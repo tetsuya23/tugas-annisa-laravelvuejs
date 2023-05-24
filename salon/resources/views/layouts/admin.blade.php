@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    @section('css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -235,7 +236,7 @@
                             </a>
                         </li>
                         <li class="nav-item menu-open">
-                            <a href="{{ url ('member') }}" class="nav-link {{ request()->is('member') ? 'active' : '' }}">
+                            <a href="{{ url ('members') }}" class="nav-link {{ request()->is('members') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tree"></i>
                                 <p>
                                     Member
@@ -251,7 +252,7 @@
                             </a>
                         </li>
                         <li class="nav-item menu-open">
-                            <a href="{{ url ('sale') }}" class="nav-link {{ request()->is('sale') ? 'active' : '' }}">
+                            <a href="{{ url ('sales') }}" class="nav-link {{ request()->is('sales') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Sale
@@ -326,8 +327,11 @@
     <!-- overlayScrollbars -->
     <script src="{{ asset ('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="{{ asset ('assets/dist/js/adminlte.js') }}">
-    </script>
+    <script src="{{ asset ('assets/dist/js/adminlte.js') }}"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    @section('js')
+
 </body>
 
 </html>

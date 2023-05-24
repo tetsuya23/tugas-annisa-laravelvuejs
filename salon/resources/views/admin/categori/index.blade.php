@@ -3,7 +3,7 @@
 @section('header', 'Categori')
 @section('content')
 
-<div class="col-md-6">
+<div class="col-md-10">
     <div class="card">
         <div class="card-header">
             <a href="{{ url('categoris/create') }}" class="btn btn-sm btn-warning pull-right">Create New Categori</a>

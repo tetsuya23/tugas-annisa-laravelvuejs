@@ -1,6 +1,5 @@
 @extends('layouts.admin')
-
-@section('header', 'Petugas')
+@section('header', 'Member')
 @section('content')
 <div class="row">
     <!-- left column -->
@@ -8,14 +7,15 @@
         <!-- general form elements -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Create Petugas</h3>
+            <h3 class="card-title">MEMBER</h3>
+                <h3 class="card-title">Create member</h3>
             </div>
         
-            <form action="{{ url('petugas') }}" method="post">
+            <form action="{{ url('members') }}" method="post">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="name">Name</label>
+                    <label for="name">Name</label>
                         <input type="text" name="name" class="form-control" placeholder="Enter name" required="">                            
                         <label for="email">Email</label>
                         <input type="text" name="email" class="form-control" placeholder="Enter email" required="">
@@ -26,8 +26,8 @@
                         <br>
                         <label for="gender">Gender</label>
                                 <select name="gender">                                
-                                <option value="P">P</option>
-                                <option value="L">L</option></select>
+                                <option value="female">P</option>
+                                <option value="male">L</option></select>
                     </div>                                      
                    
                 </div>
