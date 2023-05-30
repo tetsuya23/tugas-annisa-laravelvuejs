@@ -10,8 +10,8 @@ class Petugas extends Model
     use HasFactory;
     protected $fillable =['name', 'gender', 'email', 'phone_number', 'address'];
     
-    public function sales() 
-    {
-        return $this->hasMany('App\Models\Sale', 'petugas_id');
-    }
+    // public function sales() 
+    // {
+    //     return $this->hasMany('App\Models\Sale', 'petugas_id');
+    // }
 }

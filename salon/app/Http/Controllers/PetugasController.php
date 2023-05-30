@@ -7,14 +7,18 @@ use Illuminate\Http\Request;
 
 class PetugasController extends Controller
 {
+    public function _construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $petugas = Petugas::all();
-        // return $petugas;
-        return view('admin.petugas.index', compact('petugas'));
+        // // return $petugas;
+        return view('admin.petugas', compact('petugas'));
     }
 
     /**
@@ -22,7 +26,7 @@ class PetugasController extends Controller
      */
     public function create()
     {
-        return view('admin.petugas.create');
+        // return view('admin.petugas.create');
     }
 
     /**
@@ -30,7 +34,13 @@ class PetugasController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,['name', 'gender', 'email', 'phone_number', 'address' =>['required']]);
+        $this->validate($request,[
+        'name'  =>['required'],
+        'gender'  =>['required'], 
+        'email'  =>['required'], 
+        'phone_number'  =>['required'], 
+        'address'  =>['required']
+    ]);
         Petugas::create($request->all());
         
         return redirect('petugas');
@@ -51,7 +61,7 @@ class PetugasController extends Controller
     public function edit(Petugas $petugas)
     {
         //  return $petugas;
-        return view('admin.petugas.edit', compact('petugas'));
+        // return view('admin.petugas.edit', compact('petugas'));
     }
 
     /**
@@ -59,8 +69,14 @@ class PetugasController extends Controller
      */
     public function update(Request $request, Petugas $petugas)
     {
-        $this->validate($request,['name', 'gender', 'email', 'phone_number', 'address' =>['required']]);
-        
+        $this->validate($request,[
+            'name'  =>['required'],
+            'gender'  =>['required'], 
+            'email'  =>['required'], 
+            'phone_number'  =>['required'], 
+            'address'  =>['required']
+        ]);
+                
         $petugas->update($request->all());
         
         return redirect('petugas');

@@ -1,11 +1,13 @@
 @extends('layouts.admin')
 
 @section('header', 'Petugas')
+@section('css')
+@endsection
 @section('content')
 <div class="card">
     <div class="card-header">
         <h2 class="card-title">DATA PETUGAS</h2><br>
-        <a href="{{ url('petugas/create') }}" class="btn btn-sm btn-warning pull-right">Create New Petugas</a>
+        <a href="{{ url('petugas') }}" class="btn btn-sm btn-warning pull-right">Create New Petugas</a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
