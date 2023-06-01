@@ -89,6 +89,6 @@ class PetugasController extends Controller
     {
         $petugas->delete();
 
-        return redirect('petugas');
+        // return redirect('petugas');
     }
 }

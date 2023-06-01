@@ -6,13 +6,11 @@
 @section('content')
 <div id="controller">
     <div class="row">
-        <div class="col-md-10">
-            
-            <div class="card card-primary">
+        <div class="col-md-10">            
+            <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">DATA PETUGAS</h2><br>
-                    <a href="#" @click="addData()"
-                        class="btn btn-sm btn-warning pull-right">Create New Petugas</a>
+                    <a href="#" @click="addData({{$petugas}})" class="btn btn-sm btn-warning pull-right">Create New Petugas</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -37,7 +35,7 @@
                                 <td>{{ $petugas->address}}</td>
                                 <td>{{ $petugas->email}}</td>
                                 <td class="text-right">
-                                    <a href="#" data-target="#modal-overlay" data-toggle="modal" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="#" @click="editData({{$petugas}})" class="btn btn-info btn-sm">Edit</a>
                                     <a href="#" @click="deleteData({{ $petugas->id}})" class="btn btn-secondary btn-sm">Delete</a>
                                 </td>
                             </tr>
@@ -56,9 +54,9 @@
         <div class="modal-content">
             <form method="post" :action="actionUrl" autocomplete="off">                
                 <div class="modal-header">
-                    <h4 class="modal-title">PETUGAS</h4>
+                    <h4 class="modal-title">CREATE PETUGAS</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">x</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -68,13 +66,13 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter name" :value="data.name" required="">
+                            <input type="text" class="form-control" name="name" :value="data.name" required="">
                             <label for="email">Email</label>
-                            <input type="text" name="email" class="form-control" placeholder="Enter email" :value="data.email" required="">
+                            <input type="text" class="form-control" name="email" :value="data.email" required="">
                             <label for="phone_number">Phone Number</label>
-                            <input type="text" name="phone_number" class="form-control" placeholder="Enter phone_number" :value="data.phone_number" required="">
+                            <input type="text" class="form-control" name="phone_number" :value="data.phone_number" required="">
                             <label for="address">Address</label>
-                            <input type="text" name="address" class="form-control" placeholder="Enter adress" :value="data.address" required="">
+                            <input type="text" class="form-control" name="address" :value="data.address" required="">
                             <br>
                             <label for="gender">Gender</label>
                             <select name="gender">
@@ -105,7 +103,7 @@
         el: '#controller',
         data: {
             data: {},
-            actionUrl : '{{ url('petugas') }}'
+            actionUrl : '{{ url('petugas') }}',
             editStatus : false
         },
         mounted: function () {
@@ -113,20 +111,20 @@
         },
         methods:{
             addData() {
-                this.data = {};
-                $('#modal-overlay').modal();
-                this.actionUrl = '{{ url('petugas')}}';
-                this.editStatus = falsel;
+                this.data = {};                
+                this.actionUrl = '{{ url('petugas') }}';
+                this.editStatus = false;
                 $('#modal-overlay').modal();
             },
             editData(data) {                
                 this.data = data;
-                this.actionUrl = '{{ url('petugas')}}'+'/'+data.id;
+                this.actionUrl = '{{ url('petugas')}}'+'/'+this.data.id;
+                this.editStatus = true;
                 $('#modal-overlay').modal();
             },
             deletedData(id) {
                 
-                this.actionUrl = '{{ url('petugas')}}'+'/'+data.id;
+                this.actionUrl = '{{ url('petugas')}}'+'/'+this.data.id;
                 if (confirm("Are you sure?"))
                 axios.post(this.actionUrl, {_method: 'DELETE'}).then(response => {
                     location.reload();
