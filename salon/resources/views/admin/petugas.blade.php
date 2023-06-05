@@ -6,11 +6,11 @@
 @section('content')
 <div id="controller">
     <div class="row">
-        <div class="col-md-10">            
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">DATA PETUGAS</h2><br>
-                    <a href="#" @click="addData({{$petugas}})" class="btn btn-sm btn-warning pull-right">Create New Petugas</a>
+                    <a href="#" @click="addData()" class="btn btn-sm btn-warning pull-right">Create New Petugas</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -35,8 +35,8 @@
                                 <td>{{ $petugas->address}}</td>
                                 <td>{{ $petugas->email}}</td>
                                 <td class="text-right">
-                                    <a href="#" @click="editData({{$petugas}})" class="btn btn-info btn-sm">Edit</a>
-                                    <a href="#" @click="deleteData({{ $petugas->id}})" class="btn btn-secondary btn-sm">Delete</a>
+                                    <a href="#" @click="editData({{ $petugas }})" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="#" @click="deleteData({{ $petugas->id }})" class="btn btn-secondary btn-sm">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -47,83 +47,96 @@
             </div>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="modal-overlay">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="post" :action="actionUrl" autocomplete="off">                
-                <div class="modal-header">
-                    <h4 class="modal-title">CREATE PETUGAS</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">x</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @csrf
-                    <input type="hidden" name="_method" value="PUT" v-if="editStatus">
-
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name" :value="data.name" required="">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" name="email" :value="data.email" required="">
-                            <label for="phone_number">Phone Number</label>
-                            <input type="text" class="form-control" name="phone_number" :value="data.phone_number" required="">
-                            <label for="address">Address</label>
-                            <input type="text" class="form-control" name="address" :value="data.address" required="">
-                            <br>
-                            <label for="gender">Gender</label>
-                            <select name="gender">
-                                <option value="P">P</option>
-                                <option value="L">L</option>
-                            </select>
+    <div class="modal fade" id="modal-overlay">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" :action="actionUrl" autocomplete="off">
+                    <div class="modal-header">
+                        <h4 class="modal-title">PETUGAS</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @csrf
+                        <input type="hidden" name="_method" value="PUT" v-if="editStatus">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" name="name" :value="petugasData.name" required="">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" :value="petugasData.email" required="">
+                                <label for="phone_number">Phone Number</label>
+                                <input type="text" class="form-control" name="phone_number" :value="petugasData.phone_number" required="">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" name="address" :value="petugasData.address" required="">
+                                <br>
+                                <label for="gender">Gender</label>
+                                <select name="gender">
+                                    <option value="P">P</option>
+                                    <option value="L">L</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
-
-
-
-
 @endsection
+
 @section('js')
 <script type="text/javascript">
-    var controller = new Vue({
+    var actionUrl = '{{ url('petugas') }}';
+    var apiUrl = '{{ url('api/petugas') }}';
+
+    var app = new Vue ({
         el: '#controller',
         data: {
-            data: {},
-            actionUrl : '{{ url('petugas') }}',
-            editStatus : false
+            petugas: [],
+            petugasData: {},
+            actionUrl,
+            apiUrl,
+            editStatus: false,
         },
         mounted: function () {
-
+            this.get_petugas()
         },
         methods:{
+            get_petugas() {
+                const _this = this;
+                $.ajax({
+                    url: apiUrl,
+                    mehtod: 'GET',
+                    success: function (data) {
+                        _this.petugas = JSON.parse(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            },
             addData() {
-                this.data = {};                
+                this.petugasData = {};
                 this.actionUrl = '{{ url('petugas') }}';
                 this.editStatus = false;
                 $('#modal-overlay').modal();
             },
-            editData(data) {                
-                this.data = data;
-                this.actionUrl = '{{ url('petugas')}}'+'/'+this.data.id;
-                this.editStatus = true;
+            editData(petugasData) {
+                this.petugasData = petugasData;
+                this.actionUrl = '{{ url('petugas')}}'+'/'+this.petugasData.id;
+                this.editStatus = true;
                 $('#modal-overlay').modal();
             },
-            deletedData(id) {
-                
+            deleteData(id) {
                 this.actionUrl = '{{ url('petugas')}}'+'/'+this.data.id;
                 if (confirm("Are you sure?"))
                 axios.post(this.actionUrl, {_method: 'DELETE'}).then(response => {
