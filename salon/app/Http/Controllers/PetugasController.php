@@ -11,6 +11,11 @@ class PetugasController extends Controller
     {
         $this->middleware('auth');
     }
+    public function api()
+    {
+        $petugas = Petugas::all();
+        return json_encode($petugas);
+    }
     /**
      * Display a listing of the resource.
      */
@@ -61,7 +66,7 @@ class PetugasController extends Controller
     public function edit(Petugas $petugas)
     {
         //  return $petugas;
-        // return view('admin.petugas.edit', compact('petugas'));
+        //  return view('admin.petugas.edit', compact('petugas'));
     }
 
     /**

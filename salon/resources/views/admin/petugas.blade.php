@@ -1,20 +1,24 @@
 @extends('layouts.admin')
 @section('header', 'Petugas')
 @section('css')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css ') }}">
+<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
 
 @section('content')
 <div id="controller">
-    <div class="row">
-        <div class="col-md-10">            
+    <div class="row">        
+        <div class="col-md-12">           
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">DATA PETUGAS</h2><br>
-                    <a href="#" @click="addData({{$petugas}})" class="btn btn-sm btn-warning pull-right">Create New Petugas</a>
+                    <a href="#" @click="addData()" class="btn btn-sm btn-warning pull-right">Create New Petugas</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="datatable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -34,9 +38,9 @@
                                 <td>{{ $petugas->phone_number }}</td>
                                 <td>{{ $petugas->address}}</td>
                                 <td>{{ $petugas->email}}</td>
-                                <td class="text-right">
-                                    <a href="#" @click="editData({{$petugas}})" class="btn btn-info btn-sm">Edit</a>
-                                    <a href="#" @click="deleteData({{ $petugas->id}})" class="btn btn-secondary btn-sm">Delete</a>
+                                <td class="text-right">                                    
+                                    <a href="#" @click="editData({{ $petugas }})" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="#" @click="deleteData({{ $petugas->id }})" class="btn btn-secondary btn-sm">Delete</a>                                    
                                 </td>
                             </tr>
                             @endforeach
@@ -47,7 +51,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 <div class="modal fade" id="modal-overlay">
     <div class="modal-dialog">
@@ -66,13 +70,13 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name" :value="data.name" required="">
+                            <input type="text" class="form-control" name="name" :value="petugasData.name" required="">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" name="email" :value="data.email" required="">
+                            <input type="text" class="form-control" name="email" :value="petugasData.email" required="">
                             <label for="phone_number">Phone Number</label>
-                            <input type="text" class="form-control" name="phone_number" :value="data.phone_number" required="">
+                            <input type="text" class="form-control" name="phone_number" :value="petugasData.phone_number" required="">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" name="address" :value="data.address" required="">
+                            <input type="text" class="form-control" name="address" :value="petugasData.address" required="">
                             <br>
                             <label for="gender">Gender</label>
                             <select name="gender">
@@ -92,38 +96,86 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+</div>
 
 
 
 
 @endsection
 @section('js')
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('assets//datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets//datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets//datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets//datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets//datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets//datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets//jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('assets//pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets//pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets//datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets//datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets//datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script type="text/javascript">
-    var controller = new Vue({
+  $(function () {
+    $("#datatable").DataTable();
+    // $('#example2').DataTable({
+    //   "paging": true,
+    //   "lengthChange": false,
+    //   "searching": false,
+    //   "ordering": true,
+    //   "info": true,
+    //   "autoWidth": false,
+    //   "responsive": true,
+    // });
+  });
+</script>
+<!-- crud vuejs -->
+<script type="text/javascript">
+    var actionUrl = '{{ url('petugas') }}';
+    var apiUrl = '{{ url('api/petugas') }}';
+
+    var app = new Vue ({
         el: '#controller',
         data: {
-            data: {},
-            actionUrl : '{{ url('petugas') }}',
-            editStatus : false
+            petugas: [],
+            petugasData: {},
+            actionUrl,
+            apiUrl,
+            editStatus: false,
         },
         mounted: function () {
 
+            this.get_petugas()
+
         },
         methods:{
+            get_petugas() {
+                const _this = this;
+                $.ajax({
+                    url: apiUrl,
+                    mehtod: 'GET',
+                    success: function (data) {
+                        _this.petugas = JSON.parse(data);
+            },
+            error: function (error) {
+                        console.log(error);
+                    }
+                });
+            },
             addData() {
-                this.data = {};                
+                this.petugasData = {};
                 this.actionUrl = '{{ url('petugas') }}';
                 this.editStatus = false;
                 $('#modal-overlay').modal();
             },
-            editData(data) {                
-                this.data = data;
-                this.actionUrl = '{{ url('petugas')}}'+'/'+this.data.id;
-                this.editStatus = true;
+            editData(petugasData) {
+                this.petugasData = petugasData;
+                this.actionUrl = '{{ url('petugas')}}'+'/'+this.petugasData.id;
+                this.editStatus = true;
                 $('#modal-overlay').modal();
             },
-            deletedData(id) {
-                
+            deleteData(id) {
                 this.actionUrl = '{{ url('petugas')}}'+'/'+this.data.id;
                 if (confirm("Are you sure?"))
                 axios.post(this.actionUrl, {_method: 'DELETE'}).then(response => {
