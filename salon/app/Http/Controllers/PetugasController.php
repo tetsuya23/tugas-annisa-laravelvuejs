@@ -11,11 +11,19 @@ class PetugasController extends Controller
     {
         $this->middleware('auth');
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
     public function api()
     {
         $petugas = Petugas::all();
         return json_encode($petugas);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
     /**
      * Display a listing of the resource.
      */
@@ -41,15 +49,15 @@ class PetugasController extends Controller
     {
         $this->validate($request,[
         'name'  =>['required'],
-        'gender'  =>['required'], 
-        'email'  =>['required'], 
-        'phone_number'  =>['required'], 
+        'gender'  =>['required'],
+        'email'  =>['required'],
+        'phone_number'  =>['required'],
         'address'  =>['required']
     ]);
         Petugas::create($request->all());
-        
+
         return redirect('petugas');
-        
+
     }
 
     /**
@@ -76,14 +84,14 @@ class PetugasController extends Controller
     {
         $this->validate($request,[
             'name'  =>['required'],
-            'gender'  =>['required'], 
-            'email'  =>['required'], 
-            'phone_number'  =>['required'], 
+            'gender'  =>['required'],
+            'email'  =>['required'],
+            'phone_number'  =>['required'],
             'address'  =>['required']
         ]);
-                
+
         $petugas->update($request->all());
-        
+
         return redirect('petugas');
     }
 

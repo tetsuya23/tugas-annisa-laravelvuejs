@@ -36,7 +36,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>                
+                </li>
             </ul>
 
             <!-- Right navbar links -->
@@ -328,9 +328,14 @@
     <script src="{{ asset ('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset ('assets/dist/js/adminlte.js') }}"></script>
+<<<<<<< HEAD
+=======
+    <!-- VueJs -->
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    
+
     @yield('js')
 
 </body>

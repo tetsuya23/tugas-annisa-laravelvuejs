@@ -43,8 +43,13 @@ Route::get('/members/create', [App\Http\Controllers\MemberController::class, 'cr
 // Route::get('/petugas/{petugas}/edit', [App\Http\Controllers\PetugasController::class, 'edit']);
 // Route::put('/petugas/{petugas}', [App\Http\Controllers\PetugasController::class, 'update']);
 // Route::delete('/petugas/{petugas}', [App\Http\Controllers\PetugasController::class, 'destroy']);
+
 // (menggunakan vuejs)
+<<<<<<< HEAD
 Route::resource('/petugas', App\Http\Controllers\PetugasController::class); 
+=======
+Route::resource('/petugas', App\Http\Controllers\PetugasController::class);
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
 Route::get('/api/petugas', [App\Http\Controllers\PetugasController::class, 'api']);
 
 Route::get('/sale', [App\Http\Controllers\SaleController::class, 'index']);

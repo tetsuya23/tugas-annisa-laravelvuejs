@@ -9,8 +9,13 @@
 
 @section('content')
 <div id="controller">
+<<<<<<< HEAD
     <div class="row">        
         <div class="col-md-12">           
+=======
+    <div class="row">
+        <div class="col-md-12">
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">DATA PETUGAS</h2><br>
@@ -38,9 +43,15 @@
                                 <td>{{ $petugas->phone_number }}</td>
                                 <td>{{ $petugas->address}}</td>
                                 <td>{{ $petugas->email}}</td>
+<<<<<<< HEAD
                                 <td class="text-right">                                    
                                     <a href="#" @click="editData({{ $petugas }})" class="btn btn-info btn-sm">Edit</a>
                                     <a href="#" @click="deleteData({{ $petugas->id }})" class="btn btn-secondary btn-sm">Delete</a>                                    
+=======
+                                <td class="text-right">
+                                    <a href="#" @click="editData({{ $petugas }})" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="#" @click="deleteData({{ $petugas->id }})" class="btn btn-secondary btn-sm">Delete</a>
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
                                 </td>
                             </tr>
                             @endforeach
@@ -51,6 +62,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
 
 <div class="modal fade" id="modal-overlay">
@@ -83,25 +95,62 @@
                                 <option value="P">P</option>
                                 <option value="L">L</option>
                             </select>
+=======
+
+    <div class="modal fade" id="modal-overlay">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" :action="actionUrl" autocomplete="off">
+                    <div class="modal-header">
+                        <h4 class="modal-title">PETUGAS</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @csrf
+                        <input type="hidden" name="_method" value="PUT" v-if="editStatus">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" name="name" :value="petugasData.name" required="">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" :value="petugasData.email" required="">
+                                <label for="phone_number">Phone Number</label>
+                                <input type="text" class="form-control" name="phone_number" :value="petugasData.phone_number" required="">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" name="address" :value="petugasData.address" required="">
+                                <br>
+                                <label for="gender">Gender</label>
+                                <select name="gender">
+                                    <option value="P">P</option>
+                                    <option value="L">L</option>
+                                </select>
+                            </div>
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
+<<<<<<< HEAD
 </div>
 
 
 
 
+=======
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
 @endsection
+
 @section('js')
 <!-- DataTables  & Plugins -->
 <script src="{{ asset('assets//datatables/jquery.dataTables.min.js') }}"></script>
@@ -117,6 +166,7 @@
 <script src="{{ asset('assets//datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets//datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script type="text/javascript">
+<<<<<<< HEAD
   $(function () {
     $("#datatable").DataTable();
     // $('#example2').DataTable({
@@ -132,6 +182,8 @@
 </script>
 <!-- crud vuejs -->
 <script type="text/javascript">
+=======
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
     var actionUrl = '{{ url('petugas') }}';
     var apiUrl = '{{ url('api/petugas') }}';
 
@@ -145,9 +197,13 @@
             editStatus: false,
         },
         mounted: function () {
+<<<<<<< HEAD
 
             this.get_petugas()
 
+=======
+            this.get_petugas()
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
         },
         methods:{
             get_petugas() {
@@ -157,8 +213,13 @@
                     mehtod: 'GET',
                     success: function (data) {
                         _this.petugas = JSON.parse(data);
+<<<<<<< HEAD
             },
             error: function (error) {
+=======
+                    },
+                    error: function (error) {
+>>>>>>> 171465b3980da29332f690c4fe19467e166466b9
                         console.log(error);
                     }
                 });
