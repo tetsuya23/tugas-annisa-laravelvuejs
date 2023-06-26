@@ -11,27 +11,26 @@ class PetugasController extends Controller
     {
         $this->middleware('auth');
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 171465b3980da29332f690c4fe19467e166466b9
     public function api()
     {
         $petugas = Petugas::all();
         return json_encode($petugas);
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 171465b3980da29332f690c4fe19467e166466b9
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $petugas = Petugas::all();
+        // $petugas = Petugas::all();
         // // return $petugas;
         return view('admin.petugas', compact('petugas'));
+    }
+    public function apii()
+    {
+        $petugas = Petugas::all();
+        $datatables = datatables()->of($petugas)->addIndexColumn();
+
+        return $datatables->make(true);
     }
 
     /**
@@ -80,7 +79,7 @@ class PetugasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Petugas $petugas)
+    public function update(Request $request, $id)
     {
         $this->validate($request,[
             'name'  =>['required'],
@@ -90,6 +89,9 @@ class PetugasController extends Controller
             'address'  =>['required']
         ]);
 
+
+        $petugas=Petugas::find($id);
+
         $petugas->update($request->all());
 
         return redirect('petugas');
@@ -98,9 +100,12 @@ class PetugasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Petugas $petugas)
+    public function destroy($id)
     {
+
+        $petugas=Petugas::find($id);
         $petugas->delete();
+       
 
         // return redirect('petugas');
     }
