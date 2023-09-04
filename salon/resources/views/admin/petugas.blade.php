@@ -30,7 +30,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <!-- <tbody>
+                        <tbody>
                             @foreach($petugas as $key => $petugas)
                             <tr>
                                 <td>{{ $key+1 }}</td>
@@ -45,7 +45,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                        </tbody> -->
+                        </tbody> 
                     </table>
                 </div>
                 <!-- /.card-body -->
